@@ -4,32 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-<<<<<<< HEAD
-<<<<<<< HEAD
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/MainScene.unity
+    guid: 5d5a90926e2f5a543bcc2b4e2fe39f77
+  - enabled: 1
+    path: Assets/Scenes/Jeongmin.unity
+    guid: 5b5e3b9f16020b147a3bf15acfce4a88
   - enabled: 1
     path: Assets/Scenes/TestScenes.unity
     guid: c28323f3fbc130e44be8899e6156d341
-<<<<<<< HEAD
-=======
-  m_Scenes: []
->>>>>>> Jeogmin
   m_configObjects: {}
-=======
-  - enabled: 1
-    path: Assets/main.unity
-    guid: 061cda1751be3da4797f3b41ee5937b7
-  m_configObjects:
-    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 0470b7ece284fbe44a12d679fbb08cfb,
-      type: 2}
->>>>>>> UIScript
-=======
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/Test.unity
-    guid: 013bdba30f4b282498af0f3dfcc80b5d
-  m_configObjects: {}
->>>>>>> DrawLine
