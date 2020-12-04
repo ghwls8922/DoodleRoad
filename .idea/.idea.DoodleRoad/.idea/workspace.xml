@@ -19,12 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6918577-3395-48d9-b712-835120234f96" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DoodleRoad/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DoodleRoad/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DoodleRoad/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DoodleRoad/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Jeongmin.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Jeongmin.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerCtrl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerCtrl.cs" afterDir="false" />
-    </list>
+    <list default="true" id="b6918577-3395-48d9-b712-835120234f96" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,8 +34,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerCtrl.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CameraCtrl.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerCtrl.cs" />
       </list>
     </option>
   </component>
@@ -90,7 +85,7 @@
       <option name="presentableId" value="Default" />
       <updated>1607095010161</updated>
       <workItem from="1607095015175" duration="1683000" />
-      <workItem from="1607097081013" duration="2851000" />
+      <workItem from="1607097081013" duration="3535000" />
     </task>
     <servers />
   </component>
