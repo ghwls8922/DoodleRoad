@@ -5,10 +5,12 @@ using UnityEngine;
 public class Pause : MonoBehaviour
 {
     private bool _isPause;
+    public GameObject panel;
     
     // Start is called before the first frame update
     void Start()
     {
+        panel.SetActive(false);
         _isPause = false;
     }
 
@@ -22,15 +24,17 @@ public class Pause : MonoBehaviour
     {
         if (_isPause == false)
         {
-            Time.timeScale = 0;
             _isPause = true;
-            return; 
+            Time.timeScale = 0;
+            panel.SetActive(true);
+            return;
         }
 
         if (_isPause == true)
         {
-            Time.timeScale = 1;
             _isPause = false;
+            Time.timeScale = 1;
+            panel.SetActive(false);
             return;
         }
     }

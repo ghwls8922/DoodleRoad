@@ -1,5 +1,6 @@
 {
   "dependencies": {
+<<<<<<< HEAD
     "com.unity.2d.animation": {
       "version": "3.2.5",
       "depth": 0,
@@ -41,12 +42,20 @@
       "dependencies": {
         "com.unity.2d.common": "2.0.2",
         "com.unity.2d.animation": "3.2.5",
+=======
+    "com.unity.2d.common": {
+      "version": "2.0.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+>>>>>>> UIScript
         "com.unity.2d.sprite": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
+<<<<<<< HEAD
       "depth": 0,
       "source": "builtin",
       "dependencies": {}
@@ -65,6 +74,9 @@
     "com.unity.2d.tilemap": {
       "version": "1.0.0",
       "depth": 0,
+=======
+      "depth": 1,
+>>>>>>> UIScript
       "source": "builtin",
       "dependencies": {}
     },
@@ -98,8 +110,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+<<<<<<< HEAD
     "com.unity.mathematics": {
       "version": "1.1.0",
+=======
+    "com.unity.subsystemregistration": {
+      "version": "1.0.6",
+>>>>>>> UIScript
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -141,6 +158,26 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+<<<<<<< HEAD
+=======
+    "com.unity.xr.legacyinputhelpers": {
+      "version": "2.1.6",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.xr.management": {
+      "version": "3.2.16",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.xr.legacyinputhelpers": "2.1.2",
+        "com.unity.subsystemregistration": "1.0.6"
+      },
+      "url": "https://packages.unity.com"
+    },
+>>>>>>> UIScript
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
