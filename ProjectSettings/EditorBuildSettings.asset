@@ -4,6 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
+<<<<<<< HEAD
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
@@ -11,4 +12,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScenes.unity
     guid: c28323f3fbc130e44be8899e6156d341
+=======
+  m_Scenes: []
+>>>>>>> Jeogmin
   m_configObjects: {}
