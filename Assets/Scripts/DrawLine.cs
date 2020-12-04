@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class DrawLine : MonoBehaviour
 {
-    private LineRenderer lineRenderer;
+    int vertexNum = 0;
 
+    EdgeCollider2D edgeCollider2D;
+
+    Ray ray;
     // Start is called before the first frame update
     void Start()
     {
-        lineRenderer = GetComponent<LineRenderer>();
-
-        
-
-        lineRenderer.SetPosition(0, transform.position);
-
-        lineRenderer.SetPosition(1, transform.position + new Vector3(0, 10, 0));
-
+        edgeCollider2D = GetComponent<EdgeCollider2D>();
     }
 
     // Update is called once per frame
@@ -26,20 +22,48 @@ public class DrawLine : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
 
-            if (touch.phase == TouchPhase.Began)
-            {
-                Debug.Log("Touch Start");
-            }
+            Ray ray = Camera.main.ScreenPointToRay(touch.position);
+
+            RaycastHit rayCastHit;
+
+            if (Physics.Raycast(ray, out rayCastHit, 10.0f))
+                
 
             if (touch.phase == TouchPhase.Began)
             {
-                Debug.Log(touch.deltaPosition);
+                Debug.Log(rayCastHit.point);
             }
 
-            if (touch.phase == TouchPhase.Began)
+            if (touch.phase == TouchPhase.Moved)
             {
-                Debug.Log("Touch End");
+                gameObject.transform.position = rayCastHit.point;
+
+                edgeCollider2D.points[vertexNum] = new Vector2(rayCastHit.point.x,rayCastHit.point.y);
+                Debug.Log("collider" + rayCastHit.point);
+                vertexNum++;
+            }
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+                StopAllCoroutines();
             }
         }
+    }
+
+    IEnumerator MakeCollider(Vector2 point)
+    {
+        int vertexNum = 0;
+
+        while(true)
+        {
+            edgeCollider2D.points[vertexNum] = point;
+
+            Debug.Log("collider" + point);
+            vertexNum++;
+
+            yield return new WaitForSeconds(0.1f);
+        }
+
+
     }
 }
