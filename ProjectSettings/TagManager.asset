@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Trail
   - Jump
+  - Road
+  - Trail
   layers:
   - Default
   - TransparentFX
