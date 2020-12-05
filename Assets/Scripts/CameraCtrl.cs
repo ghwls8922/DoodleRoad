@@ -15,6 +15,6 @@ public class CameraCtrl : MonoBehaviour
     void Update()
     {
         transform.position = Vector3.Lerp(transform.position,
-            new Vector3(transformtoFollow.position.x + 5, transform.position.y, transform.position.z), moveSpeed * Time.deltaTime);
+            new Vector3(transformtoFollow.position.x + 5, transformtoFollow.position.y, transform.position.z), moveSpeed * Time.deltaTime);
     }
 }

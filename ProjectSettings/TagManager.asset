@@ -4,8 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Jump
+  - Road
   - Trail
   - Jump
+  - key
+  - Goal
   layers:
   - Default
   - TransparentFX
@@ -15,8 +19,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Ground
+  - Button
   - 
   - 
   - 
