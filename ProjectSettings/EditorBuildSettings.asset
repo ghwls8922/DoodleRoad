@@ -9,9 +9,17 @@ EditorBuildSettings:
     path: Assets/Scenes/MainScene.unity
     guid: 5d5a90926e2f5a543bcc2b4e2fe39f77
   - enabled: 1
-    path: Assets/Scenes/Jeongmin.unity
-    guid: 5b5e3b9f16020b147a3bf15acfce4a88
+    path: Assets/Scenes/StageScene.unity
+    guid: 28dd962108126474398b38d3ee828b84
+  - enabled: 1
+    path: Assets/Scenes/Stage1.unity
+    guid: b4e469b7c67a06a47a1658953f289b94
+  - enabled: 1
+    path: Assets/Scenes/Stage2.unity
+    guid: ffa00208bbf0306469cb4f6a11c2b8e1
+    path: Assets/Scenes/Kimjimin.unity
+    guid: 485d0c0d20cde6b408e375954ba4b74a
   - enabled: 1
     path: Assets/Scenes/TestScenes.unity
-    guid: c28323f3fbc130e44be8899e6156d341
+    guid: 0e0781d2b8c67fd479db60f6f94897a1
   m_configObjects: {}
