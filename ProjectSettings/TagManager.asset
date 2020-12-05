@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Trail
   - Jump
+  - key
   layers:
   - Default
   - TransparentFX
