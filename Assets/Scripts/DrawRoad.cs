@@ -15,11 +15,15 @@ public class DrawRoad : MonoBehaviour
     LineRenderer _lineRenderer;
     PolygonCollider2D _polygonCollider2D;
     Rigidbody2D _roadRigidbody2D;
+    AudioSource _audioSource;
+    float _drawTime;
 
     public void Initialized()
     {
         _roadRigidbody2D = roadPrefab.GetComponent<Rigidbody2D>();
         _roadRigidbody2D.gravityScale = 0;
+        _audioSource = GetComponent<AudioSource>();
+        _drawTime = 0;
     }
 
     private void Start()
@@ -43,6 +47,13 @@ public class DrawRoad : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
+            
+            _drawTime += Time.deltaTime;
+            if (_drawTime > 1 && !_audioSource.isPlaying)
+            {
+                _audioSource.Play();
+                _drawTime = 0;
+            }
 
             if (touch.phase == TouchPhase.Began)
             {
@@ -70,6 +81,12 @@ public class DrawRoad : MonoBehaviour
             {
                 currentRoad.GetComponent<Rigidbody2D>().gravityScale = 1;
             }
+        }
+        else
+        {
+            _drawTime = 10; //그리기 시작할때 잠시 들리지 않는것을 방지하기 위해
+            Debug.Log(_drawTime);
+            _audioSource.Stop();
         }
     }
 
