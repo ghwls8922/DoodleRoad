@@ -4,21 +4,43 @@ using UnityEngine;
 
 public class DrawLine : MonoBehaviour
 {
-    int vertexNum = 0;
+    public float            drawableAmount = 1000.0f;
 
-    EdgeCollider2D edgeCollider2D;
+    public GameObject       trailPrefab;
+    public GameObject       currentTrail;
 
-    Ray ray;
-    // Start is called before the first frame update
-    void Start()
+    public List<Vector2>    trailPointList;
+
+
+    LineRenderer            _lineRenderer;
+    EdgeCollider2D          _edgeCollider2D;
+    Rigidbody2D             _trailRigidbody2D;
+
+    public void Initialized()
     {
-        edgeCollider2D = GetComponent<EdgeCollider2D>();
+        _trailRigidbody2D = trailPrefab.GetComponent<Rigidbody2D>();
+        _trailRigidbody2D.gravityScale = 0;
+    }
+    
+    private void Start()
+    {
+        Initialized();
+    }
+
+    public void DestroyAllTrail()
+    {
+        GameObject[] trails = GameObject.FindGameObjectsWithTag("Trail");
+
+        foreach (GameObject trail in trails)
+        {
+            Destroy(trail);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.touchCount>0)
+        if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
 
@@ -28,42 +50,66 @@ public class DrawLine : MonoBehaviour
 
             if (Physics.Raycast(ray, out rayCastHit, 10.0f))
                 
-
             if (touch.phase == TouchPhase.Began)
             {
-                Debug.Log(rayCastHit.point);
+                    if (drawableAmount >= 0) 
+                {
+                    CreateLine(rayCastHit.point);
+                }
             }
 
             if (touch.phase == TouchPhase.Moved)
             {
-                gameObject.transform.position = rayCastHit.point;
+                if (drawableAmount >= 0)
+                {
+                    Vector2 tempFingerPos = rayCastHit.point;
 
-                edgeCollider2D.points[vertexNum] = new Vector2(rayCastHit.point.x,rayCastHit.point.y);
-                Debug.Log("collider" + rayCastHit.point);
-                vertexNum++;
+                    if (Vector2.Distance(tempFingerPos, trailPointList[trailPointList.Count - 1]) > 0.1f)
+                    {
+                        UpdateLine(tempFingerPos);
+                        drawableAmount--;
+                    }
+                }
             }
 
             if (touch.phase == TouchPhase.Ended)
             {
-                StopAllCoroutines();
+                currentTrail.GetComponent<Rigidbody2D>().gravityScale = 1;
+                //DestroyAllTrail();
             }
         }
     }
 
-    IEnumerator MakeCollider(Vector2 point)
+    void CreateLine(Vector2 point)
     {
-        int vertexNum = 0;
+        currentTrail = Instantiate(trailPrefab, Vector3.zero, Quaternion.identity);
 
-        while(true)
-        {
-            edgeCollider2D.points[vertexNum] = point;
+        _lineRenderer = currentTrail.GetComponent<LineRenderer>();
+        _edgeCollider2D = currentTrail.GetComponent<EdgeCollider2D>();
 
-            Debug.Log("collider" + point);
-            vertexNum++;
+        trailPointList.Clear();
 
-            yield return new WaitForSeconds(0.1f);
-        }
+        trailPointList.Add(point);
+        trailPointList.Add(point);
 
+        _lineRenderer.SetPosition(0, trailPointList[0]);
+        _lineRenderer.SetPosition(1, trailPointList[1]);
+
+        _edgeCollider2D.points = trailPointList.ToArray();
 
     }
+
+    void UpdateLine(Vector2 point)
+    {
+        trailPointList.Add(point);
+        _lineRenderer.positionCount++;
+        _lineRenderer.SetPosition(_lineRenderer.positionCount - 1, point);
+        _edgeCollider2D.points = trailPointList.ToArray();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
+    }
 }
+    

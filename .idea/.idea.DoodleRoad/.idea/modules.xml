@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< Updated upstream
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/.idea.DoodleRoad/.idea/.idea.DoodleRoad.iml" filepath="$PROJECT_DIR$/.idea/.idea.DoodleRoad/.idea/.idea.DoodleRoad.iml" />
+>>>>>>> Stashed changes
       <module fileurl="file://$PROJECT_DIR$/.idea/.idea.DoodleRoad/riderModule.iml" filepath="$PROJECT_DIR$/.idea/.idea.DoodleRoad/riderModule.iml" />
     </modules>
   </component>
