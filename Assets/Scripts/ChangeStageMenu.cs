@@ -1,26 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Button : MonoBehaviour
+public class ChangeStageMenu : MonoBehaviour
 {
-    public bool isPushed;
     // Start is called before the first frame update
     void Start()
     {
-        isPushed = false;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void StageMenu()
     {
-        if (collision.gameObject.CompareTag("key"))
-        {
-            isPushed = true;
-        }
+        SceneManager.LoadScene("StageMenu");
     }
 }

@@ -23,20 +23,9 @@ public class Foothold : MonoBehaviour
         if(button.isPushed == false)
             button = GameObject.Find("Button").GetComponent<Button>();
        
-        Debug.Log(button.isPushed);
-        if(button.isPushed)
+        if(button.isPushed && _curPosition.y <= yMax)
         {
             _curPosition.y += Time.deltaTime * direction;
-            if (_curPosition.y >= yMax)
-            {
-                direction *= -1;
-                _curPosition.y = yMax;
-            }
-            else if (_curPosition.y <= yMin)
-            {
-                direction *= -1;
-                _curPosition.y = yMin;
-            }
             transform.position = _curPosition;
         }
         
