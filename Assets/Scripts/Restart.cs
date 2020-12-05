@@ -19,7 +19,7 @@ public class Restart : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("kimjimin");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
     }
 }
