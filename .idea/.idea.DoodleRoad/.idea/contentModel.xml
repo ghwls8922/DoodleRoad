@@ -13,6 +13,7 @@
           <e p="PlayerCtrl.cs" t="Include" />
           <e p="ScenesChange.cs" t="Include" />
           <e p="Timer.cs" t="Include" />
+          <e p="WireButton.cs" t="Include" />
         </e>
       </e>
       <e p="DoodleRoad.sln" t="IncludeFlat" />

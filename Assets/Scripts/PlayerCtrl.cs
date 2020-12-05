@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,7 +32,6 @@ public class PlayerCtrl : MonoBehaviour
         if (Mathf.Abs(_rigidbody2D.velocity.x) > maxSpeed)
         {
             _rigidbody2D.velocity = new Vector2(maxSpeed * moveDirection.x, _rigidbody2D.velocity.y);
-            Debug.Log(maxSpeed * moveDirection.x);
         }
 
         // 구간에 도달 했을 때 멈춤
@@ -69,5 +69,11 @@ public class PlayerCtrl : MonoBehaviour
     public void SetIsSolved()
     {
         isSolved = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.layer == 11)
+            Debug.Log("사망");
     }
 }
