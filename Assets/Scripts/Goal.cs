@@ -5,16 +5,12 @@ using UnityEngine;
 public class Goal : MonoBehaviour
 {
     public GameObject goalPanel;
-    // Start is called before the first frame update
+    public AudioClip youWin;
+    private AudioSource audioSource;
     void Start()
     {
         goalPanel.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -29,5 +25,7 @@ public class Goal : MonoBehaviour
     {
         Time.timeScale = 0;
         goalPanel.SetActive(true);
+        audioSource.clip = youWin;
+        audioSource.Play();
     }
 }

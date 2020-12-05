@@ -9,10 +9,12 @@ public class PlayerCtrl : MonoBehaviour
     public float maxSpeed; // 최대 이동 속도
     public float stopPointX; // 이동 중 퍼즐 구간에 왔을 때
     public float stopDistance; // 퍼즐 구간 거리
+    public AudioClip youLose;
 
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer spriteRenderer;
     private RaycastHit2D raycastHit2D;
+    private AudioSource audioSource;
     private bool isSolved; // 퍼즐을 품
     private int floorY; // 떨어지면 죽는 구간
     private Vector2 moveDirection; // 움직이는 방향
@@ -21,6 +23,7 @@ public class PlayerCtrl : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = gameObject.GetComponent<AudioSource>();
         isSolved = false;
         floorY = -10;
         moveDirection = Vector2.right;
@@ -62,7 +65,13 @@ public class PlayerCtrl : MonoBehaviour
         
         // 대충 사망 구현 메서드
         if (transform.position.y < floorY)
+        {
             Debug.Log("사망");
+            audioSource.clip = youLose;
+            audioSource.Play();
+            gameObject.SetActive(false);
+        }
+
     }
 
     // 디버그/테스트용 메서드.
@@ -73,7 +82,13 @@ public class PlayerCtrl : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.layer == 11)
+        if (other.gameObject.layer == 11)
+        {
             Debug.Log("사망");
+            audioSource.clip = youLose;
+            audioSource.Play();
+            gameObject.SetActive(false);
+
+        }
     }
 }

@@ -36,7 +36,7 @@ public class WireButton : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        Debug.Log(other.gameObject.name);
+        Debug.Log(other.gameObject.layer);
         // 지정된 태그가 달린 것과 버튼이 닿으면 눌림
         if (other.gameObject.layer == 10)
         {
