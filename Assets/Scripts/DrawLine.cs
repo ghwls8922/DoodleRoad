@@ -43,18 +43,12 @@ public class DrawLine : MonoBehaviour
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-
-            Ray ray = Camera.main.ScreenPointToRay(touch.position);
-
-            RaycastHit rayCastHit;
-
-            if (Physics.Raycast(ray, out rayCastHit, 10.0f))
                 
             if (touch.phase == TouchPhase.Began)
             {
-                    if (drawableAmount >= 0) 
+                if (drawableAmount >= 0) 
                 {
-                    CreateLine(rayCastHit.point);
+                    CreateLine(Camera.main.ScreenToWorldPoint(touch.position));
                 }
             }
 
@@ -62,7 +56,7 @@ public class DrawLine : MonoBehaviour
             {
                 if (drawableAmount >= 0)
                 {
-                    Vector2 tempFingerPos = rayCastHit.point;
+                    Vector2 tempFingerPos = Camera.main.ScreenToWorldPoint(touch.position);
 
                     if (Vector2.Distance(tempFingerPos, trailPointList[trailPointList.Count - 1]) > 0.1f)
                     {
@@ -107,9 +101,5 @@ public class DrawLine : MonoBehaviour
         _edgeCollider2D.points = trailPointList.ToArray();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log(collision.gameObject.name);
-    }
 }
     
