@@ -4,31 +4,38 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
-{
-    public Text TimeText;    //타이머 출력용 텍스트
-    public float GameTime; //타이머, 유니티 안에서 기준시간 선언
+{   
+    public float gameTime; //타이머, 유니티 안에서 기준시간 선언
     // Start is called before the first frame update
     public GameObject player;
     public GameObject gameOver;
+    public Image progressBar;
+    private float _time;
 
     void Start()
     {
         gameOver.SetActive(false);
+        _time = gameTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameTime > 0)
-            GameTime -= Time.deltaTime;
+        if (gameTime > 0)
+            gameTime -= Time.deltaTime;
 
-        if(GameTime <= 0)
+        if(gameTime <= 0)
         {
             Destroy(player);
             Time.timeScale = 0;
             gameOver.SetActive(true);
         }
 
-        TimeText.text = "Time : " + Mathf.Ceil(GameTime).ToString();
+        if(progressBar.fillAmount <= 0.25f)
+        {
+            progressBar.color = new Color(255, 0, 0, 100);
+        }
+
+        progressBar.fillAmount = 1.0f * gameTime / _time; 
     }
 }
