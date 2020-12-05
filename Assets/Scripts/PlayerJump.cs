@@ -9,12 +9,12 @@ public class PlayerJump : MonoBehaviour
 
     private Rigidbody2D _playerRigidbody2D;
     private Vector3 _jumpDirection;
-    private AudioSource audioSource;
+    private AudioSource _audioSource;
 
     void Start()
     {
         _playerRigidbody2D = GetComponent<Rigidbody2D>();
-        audioSource = gameObject.GetComponent<AudioSource>();
+        _audioSource = gameObject.GetComponent<AudioSource>();
         _jumpDirection = new Vector2(0, 1);
         
     }
@@ -24,8 +24,8 @@ public class PlayerJump : MonoBehaviour
         if (collision.gameObject.CompareTag("Jump"))
         {
             _playerRigidbody2D.AddForce(_jumpDirection * jumpForce, ForceMode2D.Impulse);
-            audioSource.clip = boing;
-            audioSource.Play();
+            _audioSource.clip = boing;
+            _audioSource.Play();
         }
     }
 }

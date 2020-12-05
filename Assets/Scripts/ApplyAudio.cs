@@ -7,16 +7,16 @@ using UnityEngine.UIElements;
 
 public class ApplyAudio : MonoBehaviour
 {
-    private AudioSource audioSource;
+    private AudioSource _audioSource;
     
     void Start()
     {
-        audioSource = gameObject.GetComponent<AudioSource>();
+        _audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
     {
         if (Input.touchCount > 0)
-            audioSource.Play(); 
+            _audioSource.Play(); 
     }
 }
