@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class DrawRoad : MonoBehaviour
 {
-    public float            drawableAmount = 1000.0f;
+    public float drawableAmount = 1000.0f;
 
-    public GameObject       roadPrefab;
-    public GameObject       currentRoad;
+    public GameObject roadPrefab;
+    public GameObject currentRoad;
 
-    public List<Vector2>    roadPointList;
+    public List<Vector2> roadPointList;
 
 
-    LineRenderer            _lineRenderer;
-    PolygonCollider2D       _polygonCollider2D;
-    Rigidbody2D             _roadRigidbody2D;
+    LineRenderer _lineRenderer;
+    PolygonCollider2D _polygonCollider2D;
+    Rigidbody2D _roadRigidbody2D;
 
     public void Initialized()
     {
         _roadRigidbody2D = roadPrefab.GetComponent<Rigidbody2D>();
         _roadRigidbody2D.gravityScale = 0;
     }
-    
+
     private void Start()
     {
         Initialized();
@@ -44,17 +44,11 @@ public class DrawRoad : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
 
-            Ray ray = Camera.main.ScreenPointToRay(touch.position);
-
-            RaycastHit rayCastHit;
-
-            if (Physics.Raycast(ray, out rayCastHit, 10.0f))
-                
             if (touch.phase == TouchPhase.Began)
             {
-                    if (drawableAmount >= 0) 
+                if (drawableAmount >= 0)
                 {
-                    CreateLine(rayCastHit.point);
+                    CreateLine(Camera.main.ScreenToWorldPoint(touch.position));
                 }
             }
 
@@ -62,7 +56,7 @@ public class DrawRoad : MonoBehaviour
             {
                 if (drawableAmount >= 0)
                 {
-                    Vector2 tempFingerPos = rayCastHit.point;
+                    Vector2 tempFingerPos = Camera.main.ScreenToWorldPoint(touch.position);
 
                     if (Vector2.Distance(tempFingerPos, roadPointList[roadPointList.Count - 1]) > 0.1f)
                     {
@@ -103,16 +97,6 @@ public class DrawRoad : MonoBehaviour
         roadPointList.Add(point);
         _lineRenderer.positionCount++;
         _lineRenderer.SetPosition(_lineRenderer.positionCount - 1, point);
-<<<<<<< HEAD:Assets/Scripts/DrawRoad.cs
         _polygonCollider2D.points = roadPointList.ToArray();
-=======
-        _edgeCollider2D.points = trailPointList.ToArray();
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        
->>>>>>> JumpingStand:Assets/Scripts/DrawLine.cs
     }
 }
-    
