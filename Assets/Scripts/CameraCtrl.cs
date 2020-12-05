@@ -6,15 +6,15 @@ public class CameraCtrl : MonoBehaviour
 {
     public float moveSpeed;
     
-    private Transform transformtoFollow;
+    private Transform _transformtoFollow;
     void Start()
     {
-        transformtoFollow = GameObject.Find("Player").GetComponent<Transform>();
+        _transformtoFollow = GameObject.Find("Player").GetComponent<Transform>();
     }
 
     void Update()
     {
         transform.position = Vector3.Lerp(transform.position,
-            new Vector3(transformtoFollow.position.x + 5, transformtoFollow.position.y, transform.position.z), moveSpeed * Time.deltaTime);
+            new Vector3(_transformtoFollow.position.x + 5, _transformtoFollow.position.y, transform.position.z), moveSpeed * Time.deltaTime);
     }
 }

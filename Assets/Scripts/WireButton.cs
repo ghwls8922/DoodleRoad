@@ -6,48 +6,48 @@ using UnityEngine;
 // ButtonTop에 넣어주시면 됩니다
 public class WireButton : MonoBehaviour
 {
-    private GameObject electricWire;
-    private BoxCollider2D bottomCollider;
-    private RaycastHit2D raycastHit2D;
-    private bool isPushed;
-    private int doodlePoint;
+    private GameObject _electricWire;
+    private BoxCollider2D _bottomCollider;
+    private RaycastHit2D _raycastHit;
+    private bool _isPushed;
+    private int _doodlePoint;
 
     void Start()
     {
-        electricWire = GameObject.Find("ElectricWire");
-        bottomCollider = GameObject.Find("ButtonBottom").GetComponent<BoxCollider2D>();
-        isPushed = false;
+        _electricWire = GameObject.Find("ElectricWire");
+        _bottomCollider = GameObject.Find("ButtonBottom").GetComponent<BoxCollider2D>();
+        _isPushed = false;
     }
 
 
     void Update()
     {
-        if (isPushed)
+        if (_isPushed)
         {
-            bottomCollider.isTrigger = true;
-            electricWire.SetActive(false);
+            _bottomCollider.isTrigger = true;
+            _electricWire.SetActive(false);
         }
         else
         {
-            bottomCollider.isTrigger = false;
-            electricWire.SetActive(true);
+            _bottomCollider.isTrigger = false;
+            _electricWire.SetActive(true);
         }
     }
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        Debug.Log(other.gameObject.name);
+        Debug.Log(other.gameObject.layer);
         // 지정된 태그가 달린 것과 버튼이 닿으면 눌림
         if (other.gameObject.layer == 10)
         {
-            doodlePoint = 0;
-            isPushed = true;
+            _doodlePoint = 0;
+            _isPushed = true;
         }
         else
         {
-            doodlePoint++;
-            if (doodlePoint > 10)
-                isPushed = false;
+            _doodlePoint++;
+            if (_doodlePoint > 10)
+                _isPushed = false;
         }
     }
 }

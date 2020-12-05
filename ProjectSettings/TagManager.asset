@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Trail
   - Goal
+  - Jamp
+  - Wire
+  - Jump
+  - key
+  - Doodle
+  - PanelCanvas
   layers:
   - Default
   - TransparentFX
@@ -15,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Ground
   - 
   - 
   - 
@@ -42,4 +48,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 2568672103
     locked: 0

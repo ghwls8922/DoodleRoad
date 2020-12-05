@@ -5,51 +5,56 @@ using UnityEngine;
 
 public class PlayerCtrl : MonoBehaviour
 {
-    public float moveSpeed; // 보통 이동 속도
+    public float moveSpeed = 0; // 보통 이동 속도
     public float maxSpeed; // 최대 이동 속도
     public float stopPointX; // 이동 중 퍼즐 구간에 왔을 때
     public float stopDistance; // 퍼즐 구간 거리
+    public AudioClip youLose;
 
-    private float realSpeed = 0;
+    private float _characterSpeed = 0;
     private Rigidbody2D _rigidbody2D;
-    private SpriteRenderer spriteRenderer;
-    private RaycastHit2D raycastHit2D;
-    private bool isSolved; // 퍼즐을 품
-    private int floorY; // 떨어지면 죽는 구간
-    private Vector2 moveDirection; // 움직이는 방향
-    
-    public void StartPlayerMoving()
+    private SpriteRenderer _spriteRenderer;
+    private RaycastHit2D _raycastHit2D;
+    private AudioSource _audioSource;
+    private bool _isSolved; // 퍼즐을 품
+    private int _floorY; // 떨어지면 죽는 구간
+    private Vector2 _moveDirection; // 움직이는 방향
+
+    private Animator _animator;
+
+
+    public void MakePlayerMove()
     {
-        moveDirection = Vector2.right;
-        realSpeed = moveSpeed;
+        _moveDirection = Vector2.right;
+        _characterSpeed = moveSpeed;
+        _animator.runtimeAnimatorController = Instantiate(Resources.Load("jh_character_walk_1")) as RuntimeAnimatorController;
     }
-
-
 
     void Start()
     {
+        _animator = GetComponent<Animator>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        isSolved = false;
-        floorY = -10;
-        
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _audioSource = gameObject.GetComponent<AudioSource>();
+        _isSolved = false;
+        _floorY = -10;
     }
 
     void FixedUpdate()
     {
-        // 최대 이동 속도로 속도 고정 (이동 방향에 따라 다른 최대 속도)
+        _rigidbody2D.velocity = new Vector2(moveSpeed * _moveDirection.x, _rigidbody2D.velocity.y);
+
+        //// 최대 이동 속도로 속도 고정 (이동 방향에 따라 다른 최대 속도)
         //if (Mathf.Abs(_rigidbody2D.velocity.x) > maxSpeed)
         //{
-        //    _rigidbody2D.velocity = new Vector2(realSpeed * moveDirection.x, _rigidbody2D.velocity.y);
+        //    _rigidbody2D.velocity = new Vector2(maxSpeed * _moveDirection.x, _rigidbody2D.velocity.y);
         //}
 
-        _rigidbody2D.velocity = new Vector2(realSpeed * moveDirection.x, _rigidbody2D.velocity.y);
-
-        // 구간에 도달 했을 때 멈춤
-        /*if (stopPointX < transform.position.x && transform.position.x < stopPointX + stopDistance && !isSolved)
-            _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x * 0.5f, _rigidbody2D.velocity.y);
-        else
-            _rigidbody2D.AddForce(moveDirection * moveSpeed, ForceMode2D.Impulse);*/
+        //// 구간에 도달 했을 때 멈춤
+        //if (stopPointX < transform.position.x && transform.position.x < stopPointX + stopDistance && !_isSolved)
+        //    _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x * 0.5f, _rigidbody2D.velocity.y);
+        //else
+        //    _rigidbody2D.AddForce(_moveDirection * moveSpeed, ForceMode2D.Impulse);
     }
 
     void Update()
@@ -58,33 +63,55 @@ public class PlayerCtrl : MonoBehaviour
 
         // 다시 이동 시작하고 구간을 벗어나면 다음 퍼즐 준비
         if (transform.position.x > stopPointX + stopDistance) 
-            isSolved = false;
+            _isSolved = false;
 
-        Debug.DrawRay(transform.position, moveDirection, Color.red);
-        raycastHit2D = Physics2D.Raycast(transform.position, moveDirection, 
-                2, LayerMask.GetMask("Ground"));
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), _moveDirection, Color.red);
+        _raycastHit2D = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y-0.5f, transform.position.z), _moveDirection, 
+                1, LayerMask.GetMask("Ground"));
         
-        if (raycastHit2D.collider != null)
+        if (_raycastHit2D.collider != null)
         {
-            spriteRenderer.flipX = !spriteRenderer.flipX;
+            _spriteRenderer.flipX = !_spriteRenderer.flipX;
             _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x * 0.3f, _rigidbody2D.velocity.y);
-            moveDirection *= -1;
+            _moveDirection *= -1;
         }
         
         // 대충 사망 구현 메서드
-        if (transform.position.y < floorY)
+        if (transform.position.y < _floorY)
+        {
             Debug.Log("사망");
+            //_audioSource.clip = youLose;
+            //_audioSource.Play();
+            gameObject.SetActive(false);
+        }
+
     }
 
     // 디버그/테스트용 메서드.
     public void SetIsSolved()
     {
-        isSolved = true;
+        _isSolved = true;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.layer == 11)
+
+        if (other.gameObject.tag == "Goal")
+        {
+            SceneMgr.Instance.LoadNextScene();
+        }
+        if (other.gameObject.tag == "Wire")
+        {
             Debug.Log("사망");
+            gameObject.SetActive(false);
+        }
+        if (other.gameObject.layer == 11)
+        {
+            Debug.Log("사망");
+            _audioSource.clip = youLose;
+            _audioSource.Play();
+            gameObject.SetActive(false);
+
+        }
     }
 }

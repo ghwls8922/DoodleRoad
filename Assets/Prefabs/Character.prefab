@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8353a423ea0234489fffccacf5fe040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 0
+  jumpForce: 10
 --- !u!114 &44016791115916991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,6 +85,7 @@ MonoBehaviour:
   maxSpeed: 0
   stopPointX: 0
   stopDistance: 0
+  youLose: {fileID: 0}
 --- !u!114 &44016791115916966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,7 +98,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed1b413212381884387acf3179623007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goalPanelImage: {fileID: 0}
 --- !u!212 &44016791115916964
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -161,8 +161,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.25348186, y: -0.49499273}
-  m_Size: {x: 10.808563, y: 19.892056}
+  m_Offset: {x: 0.18319607, y: -0.49499273}
+  m_Size: {x: 8.406839, y: 19.892056}
   m_Direction: 0
 --- !u!50 &44016791115916965
 Rigidbody2D:
