@@ -103,7 +103,16 @@ public class DrawRoad : MonoBehaviour
         roadPointList.Add(point);
         _lineRenderer.positionCount++;
         _lineRenderer.SetPosition(_lineRenderer.positionCount - 1, point);
+<<<<<<< HEAD:Assets/Scripts/DrawRoad.cs
         _polygonCollider2D.points = roadPointList.ToArray();
+=======
+        _edgeCollider2D.points = trailPointList.ToArray();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        
+>>>>>>> JumpingStand:Assets/Scripts/DrawLine.cs
     }
 }
     

@@ -7,6 +7,9 @@ TagManager:
   - Jump
   - Road
   - Trail
+  - Jump
+  - key
+  - Goal
   layers:
   - Default
   - TransparentFX
