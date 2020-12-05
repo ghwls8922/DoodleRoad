@@ -4,11 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 20
-<<<<<<< HEAD
-  productGUID: ea210af1bf592e648a17d5200f9695df
-=======
-  productGUID: 845e730de8c470541992b7ec3eedfb9b
->>>>>>> JumpingStand
+  productGUID: 5decca1e9cae7d641839792931862a17
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
