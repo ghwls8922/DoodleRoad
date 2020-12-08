@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5823163170937745911}
+  - component: {fileID: 1343523562515313367}
   - component: {fileID: 5823163170937745908}
   - component: {fileID: 5823163170937745909}
   - component: {fileID: 5823163170937745675}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trail
   m_TagString: Trail
   m_Icon: {fileID: 0}
@@ -33,6 +34,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1343523562515313367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5823163170937745905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937fbd97e72dc6447a84e1b3a7b0c5ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &5823163170937745908
 Rigidbody2D:
   serializedVersion: 4
@@ -68,7 +81,7 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0.1
+  m_EdgeRadius: 0.01
   m_Points: []
 --- !u!120 &5823163170937745675
 LineRenderer:

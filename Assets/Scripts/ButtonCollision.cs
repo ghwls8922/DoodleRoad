@@ -8,19 +8,25 @@ public class ButtonCollision : MonoBehaviour
     public float maxYValue;
     public float speed;
 
+    private Rigidbody2D _rigidbody2D;
     private bool isButtonHit = false;
-
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
+        _rigidbody2D = moveTile.GetComponent<Rigidbody2D>();
+    }
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+
         if (isButtonHit == true)
         {
             Debug.Log(isButtonHit.ToString());
             if (moveTile.transform.position.y > maxYValue)
             {
-                Debug.Log(isButtonHit.ToString());
-                moveTile.transform.Translate(new Vector3(0, speed, 0));
-        }   }
+                _rigidbody2D.MovePosition(new Vector2(moveTile.transform.position.x, moveTile.transform.position.y) + Vector2.up * Time.fixedDeltaTime);
+
+            }
+        }
         
     }
     private void OnCollisionEnter2D(Collision2D collision)

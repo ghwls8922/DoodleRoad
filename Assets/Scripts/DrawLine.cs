@@ -11,7 +11,6 @@ public class DrawLine : MonoBehaviour
 
     public List<Vector2>    trailPointList;
 
-
     LineRenderer            _lineRenderer;
     EdgeCollider2D          _edgeCollider2D;
     Rigidbody2D             _trailRigidbody2D;
@@ -84,7 +83,7 @@ public class DrawLine : MonoBehaviour
         trailPointList.Clear();
 
         trailPointList.Add(point);
-        trailPointList.Add(point);
+        trailPointList.Add(new Vector2(point.x + 0.01f, point.y + 0.01f));
 
         _lineRenderer.SetPosition(0, trailPointList[0]);
         _lineRenderer.SetPosition(1, trailPointList[1]);

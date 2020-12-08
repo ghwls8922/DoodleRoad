@@ -22,14 +22,6 @@ public class PlayerCtrl : MonoBehaviour
 
     private Animator _animator;
 
-
-    public void MakePlayerMove()
-    {
-        _moveDirection = Vector2.right;
-        _characterSpeed = moveSpeed;
-        _animator.runtimeAnimatorController = Instantiate(Resources.Load("jh_character_walk_1")) as RuntimeAnimatorController;
-    }
-
     void Start()
     {
         _animator = GetComponent<Animator>();
@@ -39,6 +31,15 @@ public class PlayerCtrl : MonoBehaviour
         _isSolved = false;
         _floorY = -10;
     }
+
+    public void MakePlayerMove()
+    {
+        _moveDirection = Vector2.right;
+        _characterSpeed = moveSpeed;
+        _animator.runtimeAnimatorController = Instantiate(Resources.Load("jh_character_walk_1")) as RuntimeAnimatorController;
+    }
+
+    
 
     void FixedUpdate()
     {
@@ -65,7 +66,7 @@ public class PlayerCtrl : MonoBehaviour
         if (transform.position.x > stopPointX + stopDistance) 
             _isSolved = false;
 
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), _moveDirection, Color.red);
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.3f, transform.position.z), _moveDirection, Color.red);
         _raycastHit2D = Physics2D.Raycast(new Vector3(transform.position.x, transform.position.y-0.5f, transform.position.z), _moveDirection, 
                 1, LayerMask.GetMask("Ground"));
         

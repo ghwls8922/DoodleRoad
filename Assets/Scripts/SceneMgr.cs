@@ -8,9 +8,11 @@ using UnityEngine.UI;
 public class SceneMgr : MonoBehaviour
 {
     private static SceneMgr _instance = null;
-
+    private Canvas panelCanvas;
     private void Awake()
     {
+
+
         if(null == _instance)
         {
             _instance = this;
@@ -65,18 +67,20 @@ public class SceneMgr : MonoBehaviour
 
     public void LoadNumberScene()
     {
-        //캔버스 활성화
+        GameObject.FindGameObjectWithTag("PanelCanvas").GetComponent<Canvas>().enabled = true;
         GameObject pressedButton = EventSystem.current.currentSelectedGameObject;
         SceneManager.LoadScene("Stage" + pressedButton.transform.GetChild(0).GetComponent<Text>().text);
     }
 
     public void LoadStageScene()
     {
-        SceneManager.LoadScene("StageScene");
+         GameObject.FindGameObjectWithTag("PanelCanvas").GetComponent<Canvas>().enabled = false;
+         SceneManager.LoadScene("StageScene");
     }
     public void LoadMainScene()
     {
-        SceneManager.LoadScene("MainScene");
+         GameObject.FindGameObjectWithTag("PanelCanvas").GetComponent<Canvas>().enabled = false;
+         SceneManager.LoadScene("MainScene");
     }
     public void LoadNextScene()
     {
